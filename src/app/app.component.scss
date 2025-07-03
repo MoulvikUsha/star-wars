@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #32ae66;
+    height: 100px;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    h1 {
+        color: white;
+        font-size: 56px;
+    }
+
+    span {
+        color: white;
+        font-size: 14px;
+        margin-top: 50px;
+    }
+}

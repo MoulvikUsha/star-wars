@@ -1,0 +1,108 @@
+<div class="container">
+    <div class="main">
+        <div class="filter-content">
+            <p>FILTERS</p>
+            <div class="filters">
+                <ng-select [multiple]="true" [bindLabel]="''" bindValue="id" [items]="films"
+                    [(ngModel)]="selectedFilmOptions" [searchable]="false" [closeOnSelect]="false" placeholder="Movies"
+                    [clearable]="false" (change)="onCheckboxChange($event)">
+                    <ng-template ng-option-tmp let-item="item">
+                        <div class="flex items-center">
+                            <div *ngIf="selectedFilmOptions.includes(item); else notSelected">
+                                <img src="../../../assets/images/uncheck.png" /><span
+                                    style="margin-left: 10px !important;">{{ item }}</span>
+                            </div>
+                            <ng-template #notSelected>
+                                <div>
+                                    <img src="../../../assets/images/check.png" /><span
+                                        style="margin-left: 10px !important;">{{ item }}</span>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </ng-template>
+                </ng-select>
+
+
+                <ng-select [multiple]="true" bindLabel="name" bindValue="id" [items]="species"
+                    [(ngModel)]="selectedSpeciesOptions" [searchable]="false" [closeOnSelect]="false"
+                    placeholder="Species" [clearable]="false" (change)="onCheckboxChangeSpecies($event)">
+                    <ng-template ng-option-tmp let-item="item">
+                        <div class="flex items-center">
+                            <div *ngIf="selectedSpeciesOptions.includes(item); else notSelected">
+                                <img src="../../../assets/images/uncheck.png" /><span
+                                    style="margin-left: 10px !important;">{{ item }}</span>
+                            </div>
+                            <ng-template #notSelected>
+                                <div>
+                                    <img src="../../../assets/images/check.png" /><span
+                                        style="margin-left: 10px !important;">{{ item }}</span>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </ng-template>
+                </ng-select>
+
+
+                <ng-select [multiple]="true" bindLabel="name" bindValue="id" [items]="vehicles"
+                    [(ngModel)]="selectedVehicleOptions" [searchable]="false" [closeOnSelect]="false"
+                    placeholder="Vehicles" [clearable]="false" (change)="onCheckboxChangeVehicle($event)">
+                    <ng-template ng-option-tmp let-item="item">
+                        <div class="flex items-center">
+                            <div *ngIf="selectedVehicleOptions.includes(item); else notSelected">
+                                <img src="../../../assets/images/uncheck.png" /><span
+                                    style="margin-left: 10px !important;">{{ item }}</span>
+                            </div>
+                            <ng-template #notSelected>
+                                <div>
+                                    <img src="../../../assets/images/check.png" /><span
+                                        style="margin-left: 10px !important;">{{ item }}</span>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </ng-template>
+                </ng-select>
+
+
+                <ng-select [multiple]="true" bindLabel="name" bindValue="id" [items]="starships"
+                    [(ngModel)]="selectedStarshipOptions" [searchable]="false" [closeOnSelect]="false"
+                    placeholder="Starships" [clearable]="false" (change)="onCheckboxChangeStarship($event)">
+                    <ng-template ng-option-tmp let-item="item">
+                        <div class="flex items-center">
+                            <div *ngIf="selectedStarshipOptions.includes(item); else notSelected">
+                                <img src="../../../assets/images/uncheck.png" /><span
+                                    style="margin-left: 10px !important;">{{ item }}</span>
+                            </div>
+                            <ng-template #notSelected>
+                                <div>
+                                    <img src="../../../assets/images/check.png" /><span
+                                        style="margin-left: 10px !important;">{{ item }}</span>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </ng-template>
+                </ng-select>
+
+                <select name="" id="">
+                    <option value="" disabled selected>Birth year</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-data">
+            <div class="search-result">SEARCH RESULTS</div>
+            <div class="table">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let key of headers">{{ key | titlecase }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of filteredHeroes">
+                            <td *ngFor="let key of headers" (click)="goToDetail(row.slNo)">{{ row[key] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

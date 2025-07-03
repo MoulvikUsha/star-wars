@@ -1,0 +1,52 @@
+<div class="profile">
+    <div class="main">
+        <div class="filter-content">
+            <div class="hero-profile">
+                <img src="../../../assets/images/globe.PNG" alt="">
+                <span>Name: {{hero?.name}}</span>
+                <span>Birth year: {{hero?.birth_year}}</span>
+                <span>Gender: {{hero?.gender}}</span>
+                <span>Hair: {{hero?.hair_color}}</span>
+                <span>Eye color: {{hero?.eye_color}}</span>
+                <span>Skin color: {{hero?.skin_color}}</span>
+                <span>Height: {{hero?.height}}</span>
+                <span>Mass: {{hero?.mass}}</span>
+            </div>
+        </div>
+        <div class="profile-data">
+            <div class="films">
+                <p>FILMS</p>
+                <div class="film-data">
+                    <div *ngIf="films.length > 0; else filmsNotAvailable">
+                        <span *ngFor="let item of films">{{item.title? item: 'N/A'}}</span>
+                    </div>
+                    <ng-template #filmsNotAvailable>
+                        <span>Not avaialble</span>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="vehicles">
+                <p>VEHICLES</p>
+                <div class="vehicle-data">
+                    <div *ngIf="vehicles.length > 0; else vehiclesNotAvailable">
+                        <span *ngFor="let item of vehicles">{{item? item: 'N/A'}}</span>
+                    </div>
+                    <ng-template #vehiclesNotAvailable>
+                        <span>Not avaialble</span>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="starships">
+                <p>STARSHIPS</p>
+                <div class="starship-data">
+                    <div *ngIf="starships.length > 0; else starshipsNotAvailable">
+                        <span *ngFor="let item of starships">{{item? item: 'N/A'}}</span>
+                    </div>
+                    <ng-template #starshipsNotAvailable>
+                        <span>Not avaialble</span>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

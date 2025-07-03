@@ -1,0 +1,87 @@
+.search-result {
+    color: #32ae66;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.main {
+    padding: 40px 80px;
+    display: flex;
+    gap: 40px;
+    background-color: rgb(186, 186, 186);
+
+}
+
+.filter-content {
+    width: 350px;
+    height: auto;
+    background-color: white;
+    padding: 20px;
+
+    p {
+        font-weight: bolder;
+        color: #32ae66;
+        display: flex;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    .filters {
+        margin-top: 10px;
+        display: grid;
+        width: 100%;
+        gap: 20px;
+    }
+}
+
+.table-data {
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+}
+
+.table {
+    margin-top: 10px;
+    overflow-y: auto;
+    height: 76vh;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table th,
+.custom-table td {
+    border: 1.5px solid #f0f0f0;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.custom-table thead {
+    position: sticky;
+    top: 0px;
+    background-color: #e7e7e7;
+    color: #4e4e4e;
+    font-size: medium;
+}
+
+.custom-table tbody tr {
+    cursor: pointer;
+    background-color: #d8d8d8;
+    color: #4e4e4e;
+    font-size: small;
+}
+
+ng-select {
+    height: 30px;
+    background: #d8d8d8;
+    border-radius: 5px;
+    color: #32ae66;
+    border: 1px solid transparent;
+}
+
+::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+    white-space: nowrap;
+    display: none !important;
+}
