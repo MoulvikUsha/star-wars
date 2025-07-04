@@ -5,7 +5,7 @@
             <div class="filters">
                 <ng-select [multiple]="true" [bindLabel]="''" bindValue="id" [items]="films"
                     [(ngModel)]="selectedFilmOptions" [searchable]="false" [closeOnSelect]="false" placeholder="Movies"
-                    [clearable]="false" (change)="onCheckboxChange($event)">
+                    [clearable]="false">
                     <ng-template ng-option-tmp let-item="item">
                         <div class="flex items-center">
                             <div *ngIf="selectedFilmOptions.includes(item); else notSelected">
@@ -22,10 +22,9 @@
                     </ng-template>
                 </ng-select>
 
-
                 <ng-select [multiple]="true" bindLabel="name" bindValue="id" [items]="species"
                     [(ngModel)]="selectedSpeciesOptions" [searchable]="false" [closeOnSelect]="false"
-                    placeholder="Species" [clearable]="false" (change)="onCheckboxChangeSpecies($event)">
+                    placeholder="Species" [clearable]="false">
                     <ng-template ng-option-tmp let-item="item">
                         <div class="flex items-center">
                             <div *ngIf="selectedSpeciesOptions.includes(item); else notSelected">
@@ -42,10 +41,9 @@
                     </ng-template>
                 </ng-select>
 
-
                 <ng-select [multiple]="true" bindLabel="name" bindValue="id" [items]="vehicles"
                     [(ngModel)]="selectedVehicleOptions" [searchable]="false" [closeOnSelect]="false"
-                    placeholder="Vehicles" [clearable]="false" (change)="onCheckboxChangeVehicle($event)">
+                    placeholder="Vehicles" [clearable]="false">
                     <ng-template ng-option-tmp let-item="item">
                         <div class="flex items-center">
                             <div *ngIf="selectedVehicleOptions.includes(item); else notSelected">
@@ -62,10 +60,9 @@
                     </ng-template>
                 </ng-select>
 
-
                 <ng-select [multiple]="true" bindLabel="name" bindValue="id" [items]="starships"
                     [(ngModel)]="selectedStarshipOptions" [searchable]="false" [closeOnSelect]="false"
-                    placeholder="Starships" [clearable]="false" (change)="onCheckboxChangeStarship($event)">
+                    placeholder="Starships">
                     <ng-template ng-option-tmp let-item="item">
                         <div class="flex items-center">
                             <div *ngIf="selectedStarshipOptions.includes(item); else notSelected">
@@ -82,14 +79,33 @@
                     </ng-template>
                 </ng-select>
 
-                <select name="" id="">
-                    <option value="" disabled selected>Birth year</option>
-                </select>
+                <ng-select [multiple]="true" bindLabel="name" bindValue="id" [items]="birthYearData"
+                    [(ngModel)]="selectedBirthyearOptions" [searchable]="false" [closeOnSelect]="false"
+                    placeholder="Birth year" [clearable]="false">
+                    <ng-template ng-option-tmp let-item="item">
+                        <div class="flex items-center">
+                            <div *ngIf="selectedBirthyearOptions.includes(item); else notSelected">
+                                <img src="../../../assets/images/uncheck.png" /><span
+                                    style="margin-left: 10px !important;">{{ item }}</span>
+                            </div>
+                            <ng-template #notSelected>
+                                <div>
+                                    <img src="../../../assets/images/check.png" /><span
+                                        style="margin-left: 10px !important;">{{ item }}</span>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </ng-template>
+                </ng-select>
+            </div>
+
+            <div class="search-button">
+                <button (click)="updateFilteredHeroes()">Search</button>
             </div>
         </div>
         <div class="table-data">
-            <div class="search-result">SEARCH RESULTS</div>
-            <div class="table">
+            <div class="search-result" *ngIf="isSearched">SEARCH RESULTS</div>
+            <div class="table" *ngIf="filteredHeroes?.length > 0; else noData">
                 <table class="custom-table">
                     <thead>
                         <tr>
@@ -103,6 +119,9 @@
                     </tbody>
                 </table>
             </div>
+            <ng-template #noData>
+                <div class="noData">No Data avaialable</div>
+            </ng-template>
         </div>
     </div>
 </div>

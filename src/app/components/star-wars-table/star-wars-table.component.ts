@@ -23,8 +23,13 @@ export class StarWarsTableComponent implements OnInit {
   selectedSpeciesOptions: string[] = [];
   selectedVehicleOptions: string[] = [];
   selectedStarshipOptions: string[] = [];
-
+  selectedBirthyearOptions: string[] = [];
   filmsData: any[] = [];
+  speciesData: any[] = [];
+  vehiclesData: any[] = [];
+  starshipsData: any[] = [];
+  birthYearData: any[] = [];
+  isSearched: boolean = false;
 
   constructor(private apiService: ApiService, private router: Router) {}
 
@@ -37,20 +42,26 @@ export class StarWarsTableComponent implements OnInit {
       this.tableData = updatedPeople;
       this.filteredHeroes = updatedPeople;
 
+      const birthYears = this.tableData.map((year: any) => year.birth_year);
+      this.birthYearData = [...new Set(birthYears)];
+
       this.apiService.getAllFilms().subscribe((res: any) => {
         this.filmsData = res;
         this.films = res.map((film: any) => film.title);
       });
 
       this.apiService.getAllVehicles().subscribe((res: any) => {
+        this.vehiclesData = res;
         this.vehicles = res.map((vehicle: any) => vehicle.name);
       });
 
       this.apiService.getAllStarships().subscribe((res: any) => {
+        this.starshipsData = res;
         this.starships = res.map((starship: any) => starship.name);
       });
 
       this.apiService.getAllSpecies().subscribe((res: any) => {
+        this.speciesData = res;
         this.species = res.map((species: any) => species.name);
       });
     });
@@ -79,35 +90,67 @@ export class StarWarsTableComponent implements OnInit {
     this.router.navigate(['/characters', id]);
   }
 
-  onCheckboxChange(event: any) {
-    this.selectedFilmOptions = event;
-
-    if (!this.selectedFilmOptions.length) {
-      this.filteredHeroes = this.tableData;
-      return;
-    }
-
-    const selectedUrls = this.filmsData
+  updateFilteredHeroes() {
+    const selectedFilmUrls = this.filmsData
       .filter((f) => this.selectedFilmOptions.includes(f.title))
       .map((f) => f.url);
 
-    this.filteredHeroes = this.tableData.filter((hero: any) =>
-      hero.films.some((filmUrl: any) => selectedUrls.includes(filmUrl))
+    const selectedSpeciesUrls = this.speciesData
+      .filter((v) => this.selectedSpeciesOptions.includes(v.name))
+      .map((v) => v.url);
+
+    const selectedVehicleUrls = this.vehiclesData
+      .filter((v) => this.selectedVehicleOptions.includes(v.name))
+      .map((v) => v.url);
+
+    const selectedStarshipsUrls = this.starshipsData
+      .filter((v) => this.selectedStarshipOptions.includes(v.name))
+      .map((v) => v.url);
+
+    this.filteredHeroes = this.tableData.filter(
+      (hero: {
+        films: any[];
+        species: any[];
+        vehicles: any[];
+        starships: any[];
+        birth_year: string;
+      }) => {
+        const matchesFilms =
+          selectedFilmUrls.length === 0 ||
+          hero.films?.some((url: any) => selectedFilmUrls.includes(url));
+
+        const matchesSpeciess =
+          selectedSpeciesUrls.length === 0 ||
+          hero.species?.some((url) => selectedSpeciesUrls.includes(url));
+
+        const matchesVehicles =
+          selectedVehicleUrls.length === 0 ||
+          hero.vehicles?.some((url) => selectedVehicleUrls.includes(url));
+
+        const matchesStarships =
+          selectedStarshipsUrls.length === 0 ||
+          hero.starships?.some((url) => selectedStarshipsUrls.includes(url));
+
+        const selectedBirthYears = this.selectedBirthyearOptions.length === 0 || this.selectedBirthyearOptions.includes(
+          hero.birth_year
+        );
+        if (selectedFilmUrls.length > 0 ||
+          selectedSpeciesUrls.length > 0 ||
+          selectedVehicleUrls.length > 0 ||
+          selectedStarshipsUrls.length > 0 ||
+          this.selectedBirthyearOptions.length > 0) {
+          this.isSearched = true;
+        } else {
+          this.isSearched = false;
+        }
+        return (
+          matchesFilms &&
+          matchesVehicles &&
+          matchesSpeciess &&
+          matchesStarships &&
+          selectedBirthYears
+        );
+      }
     );
-  }
-
-  onCheckboxChangeSpecies(event: any) {
-    this.selectedSpeciesOptions = event;
-    console.log('this.selectedSpeciesOptions:', this.selectedSpeciesOptions);
-  }
-
-  onCheckboxChangeVehicle(event: any) {
-    this.selectedSpeciesOptions = event;
-    console.log('this.selectedVehicleOptions:', this.selectedVehicleOptions);
-  }
-
-  onCheckboxChangeStarship(event: any) {
-    this.selectedSpeciesOptions = event;
-    console.log('this.selectedStarshipOptions:', this.selectedStarshipOptions);
   }
 }

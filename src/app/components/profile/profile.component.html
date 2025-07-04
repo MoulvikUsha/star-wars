@@ -18,7 +18,7 @@
                 <p>FILMS</p>
                 <div class="film-data">
                     <div *ngIf="films.length > 0; else filmsNotAvailable">
-                        <span *ngFor="let item of films">{{item.title? item: 'N/A'}}</span>
+                        <span *ngFor="let item of films">{{item? item: 'N/A'}}</span>
                     </div>
                     <ng-template #filmsNotAvailable>
                         <span>Not avaialble</span>
