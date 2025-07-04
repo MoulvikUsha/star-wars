@@ -131,14 +131,29 @@ export class StarWarsTableComponent implements OnInit {
           selectedStarshipsUrls.length === 0 ||
           hero.starships?.some((url) => selectedStarshipsUrls.includes(url));
 
-        const selectedBirthYears = this.selectedBirthyearOptions.length === 0 || this.selectedBirthyearOptions.includes(
-          hero.birth_year
+        const yearsplit = this.selectedBirthyearOptions.map((element) =>
+          Number(element.split('B')[0])
         );
-        if (selectedFilmUrls.length > 0 ||
+        const minYear = Math.min(...yearsplit);
+        const maxYear = Math.max(...yearsplit);
+        let splitDate = Number(hero.birth_year.split('B')[0]);
+        let selectedBirthYears: any;
+        if (this.selectedBirthyearOptions.length > 0) {
+          if (splitDate >= minYear && maxYear >= splitDate) {
+            selectedBirthYears = true;
+          } else {
+            selectedBirthYears = false;
+          }
+        } else {
+          selectedBirthYears = true;
+        }
+        if (
+          selectedFilmUrls.length > 0 ||
           selectedSpeciesUrls.length > 0 ||
           selectedVehicleUrls.length > 0 ||
           selectedStarshipsUrls.length > 0 ||
-          this.selectedBirthyearOptions.length > 0) {
+          this.selectedBirthyearOptions.length > 0
+        ) {
           this.isSearched = true;
         } else {
           this.isSearched = false;

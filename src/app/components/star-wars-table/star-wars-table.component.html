@@ -9,12 +9,14 @@
                     <ng-template ng-option-tmp let-item="item">
                         <div class="flex items-center">
                             <div *ngIf="selectedFilmOptions.includes(item); else notSelected">
-                                <img src="../../../assets/images/uncheck.png" /><span
+                                <img src="../../../assets/images/check.png"
+                                    style="width: 15px !important;height: 15px !important;" /><span
                                     style="margin-left: 10px !important;">{{ item }}</span>
                             </div>
                             <ng-template #notSelected>
                                 <div>
-                                    <img src="../../../assets/images/check.png" /><span
+                                    <img src="../../../assets/images/uncheck.png"
+                                        style="width: 15px !important;height: 15px !important;" /><span
                                         style="margin-left: 10px !important;">{{ item }}</span>
                                 </div>
                             </ng-template>
@@ -28,12 +30,14 @@
                     <ng-template ng-option-tmp let-item="item">
                         <div class="flex items-center">
                             <div *ngIf="selectedSpeciesOptions.includes(item); else notSelected">
-                                <img src="../../../assets/images/uncheck.png" /><span
+                                <img src="../../../assets/images/check.png"
+                                    style="width: 15px !important;height: 15px !important;" /><span
                                     style="margin-left: 10px !important;">{{ item }}</span>
                             </div>
                             <ng-template #notSelected>
                                 <div>
-                                    <img src="../../../assets/images/check.png" /><span
+                                    <img src="../../../assets/images/uncheck.png"
+                                        style="width: 15px !important;height: 15px !important;" /><span
                                         style="margin-left: 10px !important;">{{ item }}</span>
                                 </div>
                             </ng-template>
@@ -47,12 +51,14 @@
                     <ng-template ng-option-tmp let-item="item">
                         <div class="flex items-center">
                             <div *ngIf="selectedVehicleOptions.includes(item); else notSelected">
-                                <img src="../../../assets/images/uncheck.png" /><span
+                                <img src="../../../assets/images/check.png"
+                                    style="width: 15px !important;height: 15px !important;" /><span
                                     style="margin-left: 10px !important;">{{ item }}</span>
                             </div>
                             <ng-template #notSelected>
                                 <div>
-                                    <img src="../../../assets/images/check.png" /><span
+                                    <img src="../../../assets/images/uncheck.png"
+                                        style="width: 15px !important;height: 15px !important;" /><span
                                         style="margin-left: 10px !important;">{{ item }}</span>
                                 </div>
                             </ng-template>
@@ -66,12 +72,14 @@
                     <ng-template ng-option-tmp let-item="item">
                         <div class="flex items-center">
                             <div *ngIf="selectedStarshipOptions.includes(item); else notSelected">
-                                <img src="../../../assets/images/uncheck.png" /><span
+                                <img src="../../../assets/images/check.png"
+                                    style="width: 15px !important;height: 15px !important;" /><span
                                     style="margin-left: 10px !important;">{{ item }}</span>
                             </div>
                             <ng-template #notSelected>
                                 <div>
-                                    <img src="../../../assets/images/check.png" /><span
+                                    <img src="../../../assets/images/uncheck.png"
+                                        style="width: 15px !important;height: 15px !important;" /><span
                                         style="margin-left: 10px !important;">{{ item }}</span>
                                 </div>
                             </ng-template>
@@ -85,13 +93,15 @@
                     <ng-template ng-option-tmp let-item="item">
                         <div class="flex items-center">
                             <div *ngIf="selectedBirthyearOptions.includes(item); else notSelected">
-                                <img src="../../../assets/images/uncheck.png" /><span
+                                <img src="../../../assets/images/check.png"
+                                    style="width: 15px !important;height: 15px !important;" /><span
                                     style="margin-left: 10px !important;">{{ item }}</span>
                             </div>
                             <ng-template #notSelected>
                                 <div>
-                                    <img src="../../../assets/images/check.png" /><span
-                                        style="margin-left: 10px !important;">{{ item }}</span>
+                                    <img src="../../../assets/images/uncheck.png"
+                                        style="width: 15px !important;height: 15px !important;" />
+                                    <span style="margin-left: 10px !important;">{{ item }}</span>
                                 </div>
                             </ng-template>
                         </div>

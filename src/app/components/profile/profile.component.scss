@@ -43,12 +43,13 @@
 .vehicles,
 .starships {
     display: grid;
-    gap: 10px;
+    gap: 5px;
     color: rgb(91, 91, 91);
 
     p {
         color: #32ae66;
         font-weight: 800;
+        margin: 0;
     }
 
     div {
